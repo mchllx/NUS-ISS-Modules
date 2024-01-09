@@ -22,21 +22,21 @@ public class BookRepository {
 
     private Logger logger = Logger.getLogger(BookRepository.class.getName());
 
-    List<Book> bookList;
-
     Optional<Book> opt;
 
-    public Optional<Book> findBooksById(String bookId, int limit, int offset) {
-        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOKS_BY_ID, bookId, limit, offset);
+    public Optional<Book> findBooksById(String bookId) {
+        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOKS_BY_ID, bookId);
+
+        // String bookId2 = rs.getString("book_id");
+        // System.out.println(bookId2);
 
         //if next row from column does not exist
         if (!rs.next()) {
             //null values are valid in this table
-            logger.info("No books found");
             return Optional.empty();
         } else {
             opt = Optional.of(Utils.toBook(rs));
-            logger.info("\n\nQuery completed\n" + opt);
+            logger.info("\n\nQuery completed\n");
             return opt;
         } 
 
@@ -52,59 +52,36 @@ public class BookRepository {
         SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOKS_BY_TITLE_ASCENDING
         , limit, offset);
        
-        int count = 0;
+        // int count = 0;
+        List<Book> bookList = new LinkedList<>();
 
         while (rs.next()) {
-
-            bookList = new LinkedList<>();
             bookList.add(Utils.toBook(rs));
-            count = count+1;
-            
-            // String bookId = rs.getString("book_Id");
-            // // c17062ea
-            // String title = rs.getString("title");
-            // // A Breath After Drowning
-            // String authors = rs.getString("authors");
-            // // Alice Blanchard
-            // String description = rs.getString("description");
-            // //The stunning new psychological thriller...
-            // String edition = rs.getString("edition");
-            // //null
-            // String format = rs.getString("format");
-            // // Kindle Edition
-            // int pages = rs.getInt("pages");
-            // // 0 
-            // float rating = rs.getFloat("rating");
-            // // 3.77
-            // int ratCount = rs.getInt("rating_count");
-            // // 638
-            // int reviewCount = rs.getInt("review_count");
-            // // 138
-            // String genres = rs.getString("genres");
-            // // Thriller|Mystery|Suspense|Fiction
-            // String imageUrl = rs.getString("image_url");
-            // // https://images.gr-assets.com/books/1513224961l/34235951.jpg
-
-            // bookList.add(book);
-
-            // System.out.printf("Title: %s\n", title);
-            // Check if sorted, A Breath After Drowning, A Brotherhood of Spies:, A Brush with Shadows 
-
-            // System.out.printf(
-            //     "%s,%s,%s,%s,%s,%s,%d,%.3f,%d,%d,%s,%s\n", bookId, title, authors, description, edition,
-            //     format, pages, rating, ratCount, reviewCount, genres, imageUrl);
-
-            // System.out.println("----------------Book:-------------" + book.toString());
-            // // 1st record, A Breath After Drowning   , Last record, Aunt Dimity and the King's Ransom       
-            
-            // System.out.print("Count:" + count);  
-            //check if all 92 rows printed  
-          
-            System.out.println("----------------Book List:-------------" + bookList.toString());
-
         }
         
         System.out.println("\n\nQuery completed");
+
+        System.out.println(bookList);
+        return bookList;
+    }
+
+    public List<Book> findBooksByTitle() {
+
+        // String toSearch = A + "%";
+        // System.out.println(toSearch); 
+
+        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOKS_BY_TITLE);
+       
+        // int count = 0;
+        List<Book> bookList = new LinkedList<>();
+
+        while (rs.next()) {
+            bookList.add(Utils.toBook(rs));
+        }
+        
+        System.out.println("\n\nQuery completed");
+
+        // System.out.println(bookList);
         return bookList;
     } 
 
@@ -128,14 +105,14 @@ public class BookRepository {
     }
 
     //write a method, pass in params
-    public void findBooksByTitle(String keyword) {
+    public void findBooksByKeyword(String keyword) {
 
         // not SQL injection, because this value will be replaced by query
         String toSearch = "%" + keyword + "%";
 
         // SQL query, String key, read left -> right
         // throws an SQLRowSet exception if there is a syntax error
-        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOK_BY_TITLE
+        SqlRowSet rs = template.queryForRowSet(Queries.SQL_SELECT_BOOK_BY_TITLE_KEYWORD
             , toSearch, 10, 0);
 
         while (rs.next()) {

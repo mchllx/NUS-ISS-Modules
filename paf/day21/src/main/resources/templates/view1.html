@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodread - Book Details</title>
+    <title th:text="'Goodreads -' + ${books.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
-    Book Details
 
-    <table>
-        <thead>
-            <!-- needs to account for null and unicode -->
-           Book_ID:
-           Title:
-           Authors:
-           Description:
-           Edition:
-           Format:
-           Pages:
-           Rating:
-           Rating Count:
-           Review Count:
-           Genre:
-           Image_Url: 
-        </thead>
-        <tbody>
-            
-        </tbody>
+    <a th:text="Home" th:href="@{/}"></a>
 
-    </table>
+    <div class="book-detail">
+        <img th:src="@{${books.imageUrl}}"/>
+        <h2 th:text="${books.title} + ' ver' + ${books.edition ?:1}"></h2>
+        <h2 th:text="'Written by: '+ ${books.authors}"></h2>
+        <p th:text="'Ratings: ' + ${books.rating} + ' (' + ${books.ratCount} + ')'"></p>
+        <p th:text="'Reviews: '+ ' (' + ${books.reviewCount} + ')'"></p>
+        <p th:text="${books.genres}"></p>
+        <p th:text="'Reference No.: '+ ${books.bookId}"></p>
+        <p th:text="'Format: '+ ${books.format}"></p>
+        <p th:text="'No. of pages: '+ ${books.page}"></p>
+        <p th:text="${books.description}"></p>
+    </div>
+    
 </body>
 </html>

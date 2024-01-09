@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodread - Listings</title>
+    <title th:text="'Goodreads - Books' + ' (' + ${count} + ')'"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
-    <p>Test</p>
+    <h2 th:text="Books + ' (' + ${count} + ')'"></h2>
     <!-- view 10 per page -->
-    <table>
-        1.
-        2.
-        3.
-        4.
-        5.
-    </table>
-    <!-- pagination -->
+    <div class="list">
+    <ul>
+        <!-- obj: attribute name -->
+        <li th:each="book: ${books}">
+            <a th:href="@{/book/{bookId}(bookId=${book.bookId})}"><p th:text="${book.title}"></p></a>
+        </li>
+    </ul>
+    </div>
+ 
+    <div class="pagination">
+        <a th:href="@{/?offset=0}">&laquo;</a>
+
+        <!-- pageOffset = offset (39) * page (28) -->
+        <a th:each="page: ${pages}"
+        th:text="${page}"
+        th:with="pageOffset=(${offset ?:0}+39*${page})"
+        th:href="@{'/?offset='+${pageOffset}}"></a>
+
+        <a th:with="updateOffset=(${offset ?:0}+(${count}-39))"
+        th:href="@{'/?offset='+${updateOffset}}">&raquo;</a>
+    </div>
 </body>
 </html>

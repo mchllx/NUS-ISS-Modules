@@ -11,26 +11,37 @@ import org.springframework.stereotype.Service;
 
 import sg.edu.iss.nus.day21.models.Book;
 import sg.edu.iss.nus.day21.repositories.BookRepository;
+import sg.edu.iss.nus.day21.repositories.Queries;
 
 @Service
 public class BookService {
     @Autowired
     private BookRepository bookRepo;
 
-    private List<Book> bookList;
     private Optional<Book> opt;
 
     private Logger logger = Logger.getLogger(BookService.class.getName());
 
-    public Optional<Book> finalBooksById(final String bookId, final int limit, final int offset) {
-        opt = bookRepo.findBooksById(bookId, limit, offset);
+    public Integer count() {
+        List<Book> bookList = bookRepo.findBooksByTitle();
+
+        if (bookList.isEmpty()) {
+            logger.info("Invalid title");
+
+        } else {
+            logger.info("Total no. of books" + bookList.size());
+        } return bookList.size();
+    }
+
+    public Optional<Book> findBooksById(String bookId) {
+        opt = bookRepo.findBooksById(bookId);
 
         //returns true if present
         if (!opt.isPresent()) {
-            logger.info("No books found");
+            logger.info("Invalid book id");
             return Optional.empty();
         } else {
-            logger.info("Books found" + opt.get());
+            logger.info("Book id found" + opt.get());
             return opt;
         }
     }
@@ -41,7 +52,7 @@ public class BookService {
         List<Book> bookList = bookRepo.findBooksOrderByTitle(limit, offset);
 
         if (bookList.isEmpty()) {
-            logger.info("No books found");
+            logger.info("Invalid title");
             return new LinkedList<>();
 
         } else {

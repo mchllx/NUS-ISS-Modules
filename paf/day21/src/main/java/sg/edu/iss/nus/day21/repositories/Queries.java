@@ -7,7 +7,6 @@ public class Queries {
         select book_id, title, authors, description, edition, format, pages, rating, rating_count, review_count, genres, image_url
             from book2018
             where book_id like ?
-            limit ? offset ?
     """;
 
     //Find all books, sorted by book title, ascending order, alphabetical
@@ -22,6 +21,11 @@ public class Queries {
             limit ? offset ?
     """;
 
+    public static final String SQL_SELECT_BOOKS_BY_TITLE = """
+    select book_id, title, authors, description, edition, format, pages, rating, rating_count, review_count, genres, image_url
+        from book2018
+    """;
+
     //Find all books with paperbacks with a rating greater than 4
     public static final String SQL_SELECT_BOOK_BY_FORMAT_AND_RATING = """
         select book_id, title, rating, rating_count
@@ -30,7 +34,7 @@ public class Queries {
     """; 
 
     // multiline """
-    public static final String SQL_SELECT_BOOK_BY_TITLE = """
+    public static final String SQL_SELECT_BOOK_BY_TITLE_KEYWORD = """
         select book_id, title, authors, description, pages, rating, image_url
             from book2018
             where title like ?

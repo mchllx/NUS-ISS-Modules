@@ -1,0 +1,58 @@
+/* Pagination */
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    color: black;
+    font-weight: 700;
+    font-style: bold;
+    line-height: 1.15;
+    letter-spacing: -0.003em;
+    font-size: 1rem;
+  }
+
+a {
+    font-family: 'Inter', sans-serif;
+    color: blue;
+    font-weight: 400;
+    font-style: regular;
+    line-height: 1.15;
+    letter-spacing: -0.003em;
+    font-size: 1rem;
+  }
+
+.list {
+    flex-direction: column;
+    column-count: 2;
+
+}
+
+.pagination a {
+    padding: 1rem 0.5rem 1rem;
+    align-self: center;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: grey;
+    color: white;
+    
+}
+
+.book-detail {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 2rem 0rem 2rem;
+}
+
+.book-detail img {
+    grid-column: span 4;
+}
+
+.book-detail h2 {
+    grid-column: span 12;
+}
+
+.book-detail p {
+    grid-column: span 12;
+    margin: 0rem;
+}
