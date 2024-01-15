@@ -9,12 +9,9 @@ public class TaskSummary {
     private String title;
     private boolean completed;
 
-    public JsonObject toJson () {
-        return Json.createObjectBuilder()
-            .add("taskId", getTaskId())
-            .add("title", getTitle())
-            .add("completed", isCompleted())
-            .build();
+    @Override
+    public String toString() {
+        return "TaskSummary [taskId=" + taskId + ", title=" + title + ", completed=" + completed + "]";
     }
 
     public TaskSummary() {
@@ -32,10 +29,12 @@ public class TaskSummary {
     public boolean isCompleted() { return completed; }
     public void setCompleted(boolean completed) { this.completed = completed; }
 
-    @Override
-    public String toString() {
-        return "Task [taskId=" + taskId + ", title=" + title + ", completed=" + completed + "]";
+    public JsonObject toJson () {
+        return Json.createObjectBuilder()
+            .add("taskId", getTaskId())
+            .add("title", getTitle())
+            .add("completed", isCompleted())
+            .build();
     }
-
 
 }

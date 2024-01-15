@@ -21,10 +21,10 @@ public class Queries {
             where task_id = ?
     """;
   
-    //retrieve whole record
+    //retrieve whole task
     public static final String SQL_SELECT_TASK = """
         select task_id, title, due_date, priority, completed
-            from task_summary
+            from task
     """;
 
     //update record by id to set specific task as completed
@@ -41,10 +41,16 @@ public class Queries {
             where task_id = ?
     """;
 
-    //insert record
-    public static final String SQL_INSERT_TASK_BY_ID = """
-        insert into task_summary(task_id, title, due_date, priority, completed)
+    //insert task
+    public static final String SQL_INSERT_TASK = """
+        insert into task(task_id, title, due_date, priority, completed)
             values (?,?,?,?,?)
+    """;
+
+    //insert task summary
+    public static final String SQL_INSERT_TASK_AS_SUMMARY = """
+        insert into task_summary(task_id, title, completed)
+            values (?,?,?)
     """;
 
 }

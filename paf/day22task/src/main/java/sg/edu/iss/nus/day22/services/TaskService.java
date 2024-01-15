@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sg.edu.iss.nus.day22.models.Task;
 import sg.edu.iss.nus.day22.models.TaskSummary;
 import sg.edu.iss.nus.day22.repositories.TaskRepository;
 
@@ -17,21 +18,28 @@ public class TaskService {
    
     private Logger logger = Logger.getLogger(TaskService.class.getName());
 
+    //check existing records
+    public Integer taskCount() {
+        return taskRepo.getTaskAsSummary().size();
+    }
+
     //retrieve by id
     public List<TaskSummary> getTaskSummaryById(int taskId, TaskSummary taskSum) {
-        List<TaskSummary> taskSumList = taskRepo.getTaskSummaryById(taskId, taskSum);
-        return taskSumList;
+        return taskRepo.getTaskSummaryById(taskId, taskSum);
     }
 
     //retrieve summary
     public List<TaskSummary> getTaskAsSummary() {
-        List<TaskSummary> taskSumList = taskRepo.getTaskAsSummary();
-        return taskSumList;
+        return taskRepo.getTaskAsSummary();
+    }
+
+    public List<Task> getTask() {
+        return taskRepo.getTasks();
     }
 
     //update
-    public boolean updateTaskAsComplete(int taskId, boolean completed) {
-        boolean updateTaskAsComplete = taskRepo.updateTaskAsComplete(taskId, completed);
+    public boolean updateTaskAsComplete(boolean completed, int taskId) {
+        boolean updateTaskAsComplete = taskRepo.updateTaskAsComplete(completed, taskId);
 
         if (updateTaskAsComplete == true) {
             logger.info("Updated task as complete successfully: MySQL");  
@@ -51,9 +59,9 @@ public class TaskService {
         return deleteTaskById;
     }
     
-    //add by id
-    public boolean addTaskById(int taskId, TaskSummary taskSum) {
-        boolean addTaskById = taskRepo.addTaskById(taskId, taskSum);
+    //add summary by id
+    public boolean addTaskSum(TaskSummary taskSum) {
+        boolean addTaskById = taskRepo.addTaskSum(taskSum);
 
         if (addTaskById == true) {
             logger.info("Added new task successfully: MySQL");
@@ -61,5 +69,7 @@ public class TaskService {
 
         return addTaskById;
     }
+
+
     
 }

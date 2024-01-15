@@ -1,6 +1,6 @@
 package sg.edu.iss.nus.day22.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Task {
 
