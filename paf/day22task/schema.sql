@@ -32,4 +32,9 @@ create table task_status (
     message varchar(256) not null,
     status boolean
 
-)
+);
+
+grant all privileges on todo.* to root@'%';
+
+flush privileges;
+

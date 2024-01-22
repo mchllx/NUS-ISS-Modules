@@ -114,7 +114,6 @@ public class TaskController {
 
         //add to database
         taskSvc.addTaskSum(newTaskSum);
-        sess.invalidate();
 
         return ResponseEntity.ok(payload);
         }
