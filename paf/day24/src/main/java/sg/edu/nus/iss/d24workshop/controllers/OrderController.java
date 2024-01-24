@@ -26,6 +26,7 @@ import jakarta.validation.Valid;
 import sg.edu.nus.iss.d24workshop.Utils;
 import sg.edu.nus.iss.d24workshop.models.Order;
 import sg.edu.nus.iss.d24workshop.models.OrderDetail;
+import sg.edu.nus.iss.d24workshop.repositories.OrderException;
 import sg.edu.nus.iss.d24workshop.services.OrderService;
 
 @Controller
@@ -96,14 +97,20 @@ public class OrderController {
 
 		Order order = Utils.getOrder(sess);
 		List<OrderDetail> orderDetails = order.getOrderDetails();
-       
+      
         order.setOrderId(orderSvc.generateId(order));
         order.setOrderDate(new Date());
 
         logger.info("===========Checking out order===========" + order);
         logger.info("===========Checking out order details===========" + orderDetails);
-		orderSvc.insertOrder(order);
-		orderSvc.insertOrderDetail(orderDetails, order.getOrderId()); 
+
+        try {
+            orderSvc.insertOrder(order);
+            orderSvc.insertOrderDetail(orderDetails, order.getOrderId());  
+        } catch (OrderException e1) {
+            mav.setStatus(HttpStatusCode.valueOf(500));
+        }
+
 		sess.invalidate();
 
 		mav.setStatus(HttpStatusCode.valueOf(200));

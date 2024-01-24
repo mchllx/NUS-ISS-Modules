@@ -1,6 +1,7 @@
 sg/edu/nus/iss/d24workshop/Utils.class
 sg/edu/nus/iss/d24workshop/D24WorkshopApplication.class
 sg/edu/nus/iss/d24workshop/services/OrderService.class
+sg/edu/nus/iss/d24workshop/repositories/OrderException.class
 sg/edu/nus/iss/d24workshop/controllers/OrderController.class
 sg/edu/nus/iss/d24workshop/models/OrderDetail.class
 sg/edu/nus/iss/d24workshop/repositories/Queries.class

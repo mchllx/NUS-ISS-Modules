@@ -17,10 +17,9 @@ public class OrderRepository {
 
     private Logger logger = Logger.getLogger(OrderRepository.class.getName());
 
-    public boolean insertOrder(Order order) { 
+    public boolean insertOrder(Order order) throws OrderException { 
         return template.update(Queries.SQL_INSERT_ORDER
             , order.getOrderId(), order.getCustomerName(), order.getShipAddress()) > 0; 
     }
-
-    
+ 
 }
