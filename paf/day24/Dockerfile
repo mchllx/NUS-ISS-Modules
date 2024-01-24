@@ -13,7 +13,7 @@ RUN mvn package -e -Dmaven.test.skip=true
 FROM maven:3-eclipse-temurin-21
 WORKDIR /app
 
-COPY --from=builder /src/d24-workshop-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /src/target/d24-workshop-0.0.1-SNAPSHOT.jar app.jar
 
 ENV PORT=8080
 
