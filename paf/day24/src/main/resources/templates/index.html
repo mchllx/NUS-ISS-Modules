@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order form</title>
+</head>
+<body>
+
+    <h2>Order Form</h2>
+
+    <form method="POST" th:action="@{/order}" th:object="${order}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" name="customerName" size="30" th:field="*{customerName}" />
+                <span th:if="${#fields.hasErrors('customerName')}" th:errorclass="error" th:errors="*{customerName}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>
+                <input type="text" name="shipAddress" size="30" th:field="*{shipAddress}" />
+                <span th:if="${#fields.hasErrors('shipAddress')}" th:errorclass="error" th:errors="*{shipAddress}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Product:</td>
+            <td>
+                <input type="text" name="product" size="30"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>
+                <input type="number" name="quantity" size="30" min="1" />
+            </td>
+        </tr>
+    </table>
+    </form>
+
+</body>
+</html>
