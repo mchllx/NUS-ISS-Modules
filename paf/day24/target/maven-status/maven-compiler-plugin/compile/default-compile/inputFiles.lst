@@ -1,4 +1,9 @@
+/Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/repositories/Queries.java
+/Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/repositories/OrderDetailsRepository.java
 /Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/models/Order.java
 /Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/controllers/OrderController.java
+/Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/services/OrderService.java
+/Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/repositories/OrderRepository.java
+/Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/Utils.java
 /Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/models/OrderDetail.java
 /Users/michlim/Documents/nus-iss-software-dev/paf/day24/src/main/java/sg/edu/nus/iss/d24workshop/D24WorkshopApplication.java

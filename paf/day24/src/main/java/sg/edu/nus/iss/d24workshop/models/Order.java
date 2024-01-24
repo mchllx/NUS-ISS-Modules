@@ -20,9 +20,9 @@ import jakarta.validation.constraints.Size;
 //     discount decimal(6,2) default 1.0,
 //     quantity int,
 //     order_id int not null,
-public class Order  {
+public class Order {
 
-    private int orderId;
+    private String orderId;
     private Date orderDate;
 
     @NotEmpty(message="Name is a required field")
@@ -58,7 +58,7 @@ public class Order  {
     public Order() {
     }
 
-    public Order(int orderId, Date orderDate, String customerName, String shipAddress, String text, Double tax,
+    public Order(String orderId, Date orderDate, String customerName, String shipAddress, String text, Double tax,
             List<OrderDetail> orderDetails) {
         this.orderId = orderId;
         this.orderDate = orderDate;
@@ -68,8 +68,9 @@ public class Order  {
         this.tax = tax;
         this.orderDetails = orderDetails;
     }
-    public int getOrderId() { return orderId; }
-    public void setOrderId(int orderId) { this.orderId = orderId; }
+
+    public String getOrderId() { return orderId; }
+    public void setOrderId(String orderId) { this.orderId = orderId; }
     public Date getOrderDate() { return orderDate; }
     public void setOrderDate(Date orderDate) { this.orderDate = orderDate; }
     public String getCustomerName() { return customerName; }

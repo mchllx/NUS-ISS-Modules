@@ -6,14 +6,14 @@ package sg.edu.nus.iss.d24workshop.models;
 //     discount decimal(6,2) default 1.0,
 //     quantity int,
 //     order_id int not null,
-public class OrderDetail extends Order {
+public class OrderDetail {
 
     private int id;
     private String product;
     private double unitPrice;
     private double discount;
     private int quantity;
-    private int orderId;
+    private String orderId;
 
     @Override
     public String toString() {
@@ -35,7 +35,7 @@ public class OrderDetail extends Order {
     public OrderDetail() { 
     }
 
-    public OrderDetail(int id, String product, double unitPrice, double discount, int quantity, int orderId) {
+    public OrderDetail(int id, String product, double unitPrice, double discount, int quantity, String orderId) {
         this.id = id;
         this.product = product;
         this.unitPrice = unitPrice;
@@ -53,7 +53,7 @@ public class OrderDetail extends Order {
     public void setDiscount(double discount) { this.discount = discount; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
-    public int getOrderId() { return orderId; }
-    public void setOrderId(int orderId) { this.orderId = orderId; }
+    public String getOrderId() { return orderId; }
+    public void setOrderId(String orderId) { this.orderId = orderId; }
     
 }

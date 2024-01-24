@@ -38,7 +38,35 @@
             </td>
         </tr>
     </table>
-    </form>
 
+    <div th:if="${#lists.isEmpty(order.orderDetails)}">
+        <h3>Your cart is empty</h3>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(order.orderDetails)}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orderDetails: ${order.orderDetails}">
+                    <td>
+                        <span th:text="${orderDetails.product}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${orderDetails.quantity}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button type="submit" formethod="POST" th:formaction="@{/checkout}"> Checkout </button>
+        <button type="submit">Add to Cart</button>
+    </div>
+    </form>
 </body>
 </html>
