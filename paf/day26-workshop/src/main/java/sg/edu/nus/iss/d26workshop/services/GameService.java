@@ -23,10 +23,6 @@ public class GameService {
     // @Autowired
     // private CommentRepository commentRepo;
 
-    public List<Game> get(Integer limit, Integer offset) {
-        return gameRepo.get(limit, offset);
-    }
-
     public JsonObject getSummary(Integer limit, Integer offset) {
         //{ games:[{game_id:, name:}], offset:, limit:, total:, timestamp:}
         Games games = new Games();
@@ -92,12 +88,16 @@ public class GameService {
         return gameRepo.get(0, 0).size();
     }
 
-    public List<Game> getGamesByRank(Integer limit, Integer offset) {
-        return gameRepo.getByRanking(limit, offset);
+    public List<Game> get(Integer limit, Integer offset) {
+        return gameRepo.get(limit, offset);
     }
 
     public Game getGameById(Integer gid) {
         return gameRepo.getGameById(gid);
+    }
+
+    public List<Game> getGamesByRank(Integer limit, Integer offset) {
+        return gameRepo.getByRanking(limit, offset);
     }
     
 }
