@@ -84,22 +84,22 @@ public class Game {
         game.setName((d.getString("name"))); 
         game.setYear((d.getInteger("year"))); 
         game.setRanking((d.getInteger("ranking"))); 
-        game.setUsersRated((d.getInteger("users_rated"))); 
-        game.setUrl((d.getString("url"))); 
-        game.setImage((d.getString("image"))); 
+        game.setUsersRated((d.getInteger("users_rated", 0))); 
+        game.setUrl((d.getString("url") != null? d.getString("url"):"")); 
+        game.setImage((d.getString("image") != null? d.getString("url"):"")); 
  
         return game;
     }
 
     public static JsonObject BSONtoJSON(Document d) {
         return Json.createObjectBuilder()
-            .add("gid", d.getInteger("gid", 0))
+            .add("gid", d.getInteger("gid")) 
             .add("name", d.getString("name"))
             .add("year", d.getInteger("year", 0))
             .add("ranking", d.getInteger("ranking", 0))
             .add("users_rated", d.getInteger("users_rated", 0))
             .add("url", d.getString("url") != null? d.getString("url"):"")
-            .add("image", d.getString("url") != null? d.getString("url"):"")
+            .add("image", d.getString("image") != null? d.getString("url"):"")
             .build();
     }
     

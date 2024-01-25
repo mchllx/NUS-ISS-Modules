@@ -8,6 +8,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
+import sg.edu.nus.iss.d26workshop.exception.GameNotFoundException;
 import sg.edu.nus.iss.d26workshop.models.Game;
 import sg.edu.nus.iss.d26workshop.models.Games;
 import sg.edu.nus.iss.d26workshop.repositories.GameRepository;
@@ -84,6 +85,26 @@ public class GameService {
         return gameBuilder.build();
     }
 
+    public JsonObject getDetailsById(Integer gId) {
+        //{game_id, name, year, ranking, average, users_rated, url, thumbnail, timestamp}
+        Game game = gameRepo.getGameById(gId);
+
+        System.out.println("Gid" + game.getGid());
+        
+        JsonObjectBuilder gameBuilder = Json.createObjectBuilder()
+            .add("game_id", game.getGid())
+            .add("name", game.getName())
+            .add("year", game.getYear())
+            .add("ranking", game.getRanking())
+            .add("average", "not available")
+            .add("users_rated", game.getUsersRated() != null? game.getUsersRated():0)
+            .add("url", game.getUrl() != null? game.getUrl():"")
+            .add("thumbnail", game.getImage() != null? game.getImage():"")
+            .add("timestamp", DateTime.now().toString());
+
+        return gameBuilder.build();
+    }
+
     public Integer count() {
         return gameRepo.get(0, 0).size();
     }
@@ -92,7 +113,7 @@ public class GameService {
         return gameRepo.get(limit, offset);
     }
 
-    public Game getGameById(Integer gid) {
+    public Game getGameById(Integer gid) throws GameNotFoundException {
         return gameRepo.getGameById(gid);
     }
 

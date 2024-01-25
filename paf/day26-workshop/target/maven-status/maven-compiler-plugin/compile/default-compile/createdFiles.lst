@@ -1,5 +1,6 @@
 sg/edu/nus/iss/d26workshop/models/Games.class
 sg/edu/nus/iss/d26workshop/services/GameService.class
+sg/edu/nus/iss/d26workshop/exception/GameNotFoundException.class
 sg/edu/nus/iss/d26workshop/D26WorkshopApplication.class
 sg/edu/nus/iss/d26workshop/controllers/GameController.class
 sg/edu/nus/iss/d26workshop/models/Comment.class

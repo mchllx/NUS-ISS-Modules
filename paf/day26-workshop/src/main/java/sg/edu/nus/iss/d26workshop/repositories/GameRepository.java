@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.d26workshop.repositories;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.mongodb.internal.connection.QueryResult;
 
 import jakarta.json.JsonObject;
+import sg.edu.nus.iss.d26workshop.exception.GameNotFoundException;
 import sg.edu.nus.iss.d26workshop.models.Game;
 
 @Repository
@@ -23,6 +25,8 @@ public class GameRepository {
 
     @Autowired
     MongoTemplate mongoTemplate;
+
+    private Logger logger = Logger.getLogger(GameRepository.class.getName());
 
     //task 1
     /**
@@ -74,14 +78,28 @@ public class GameRepository {
     public Game getGameById(Integer gid) {
         Query query = new Query();
         query.addCriteria(Criteria.where("gid").is(gid));
-        // System.out.println(query);
 
-        Document doc = mongoTemplate.findOne(query, Document.class
+        Game game = new Game();
+
+        Document d = mongoTemplate.findOne(query, Document.class
         , "games");
         // System.out.println(doc);
 
-        Game game = new Game();
-        return game.fromJSON(doc);
+        // if (doc == null) {
+        //     throw new GameNotFoundException("Game not found");
+        // }
+
+        game.setGid((d.getInteger("gid"))); 
+        game.setName((d.getString("name"))); 
+        game.setYear((d.getInteger("year"))); 
+        game.setRanking((d.getInteger("ranking"))); 
+        game.setUsersRated((d.getInteger("users_rated", 0))); 
+        game.setUrl((d.getString("url") != null? d.getString("url"):"")); 
+        game.setImage((d.getString("image") != null? d.getString("url"):"")); 
+
+        System.out.println("Game"+ game);
+        return game;
+
     }
     
 }
