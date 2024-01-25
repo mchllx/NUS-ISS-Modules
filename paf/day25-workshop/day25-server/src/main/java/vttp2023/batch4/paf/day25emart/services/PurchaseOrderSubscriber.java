@@ -10,6 +10,7 @@ import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -57,16 +58,14 @@ public class PurchaseOrderSubscriber implements MessageListener {
 
         try {
             boolean result = poRepo.insertPurchaseOrder(po) 
-            & liRepo.insertLineItem(po.getLineItems(), poId);
+            && liRepo.insertLineItem(po.getLineItems(), poId);
             //throws exceptions if contains, rollbacks @Transactional(rollbackfor=...)
             txMgr.commit(tx);
 
         } catch (PurchaseOrderException e1) {
             logger.info("======Rolling back transaction=====\n");
-            e1.printStackTrace();
+            e1.printStackTrace(); 
 
         }
     }
-
-    
 }

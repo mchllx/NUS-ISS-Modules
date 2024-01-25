@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import vttp2023.batch4.paf.day25emart.models.PurchaseOrder;
 import vttp2023.batch4.paf.day25emart.repositories.LineItemRepository;
+import vttp2023.batch4.paf.day25emart.repositories.PurchaseOrderException;
 import vttp2023.batch4.paf.day25emart.repositories.PurchaseOrderRepository;
 
 @Service

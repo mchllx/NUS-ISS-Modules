@@ -124,6 +124,7 @@ public class PurchaseOrderController {
 		PurchaseOrder po = Utils.getPO(sess);
 		List<LineItem> lineItems = po.getLineItems();
 
+		//platformtransaction
 		if (!poSvc.createPurchaseOrderManualTx(po)) {
 			mav.setStatus(HttpStatusCode.valueOf(400));
 			mav.addObject("po", po);
