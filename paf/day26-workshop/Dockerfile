@@ -15,6 +15,8 @@ WORKDIR /app
 
 COPY --from=builder /src/target/day26-workshop-0.0.1-SNAPSHOT.jar app.jar
 
+ENV SPRING_DATA_MONGODB_URI=mongodb://localhost:37928/boardgames
+
 ENV PORT=8080
 
 EXPOSE ${PORT}
