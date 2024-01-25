@@ -15,8 +15,6 @@ WORKDIR /app
 
 COPY --from=builder /src/target/day26-workshop-0.0.1-SNAPSHOT.jar app.jar
 
-ENV SPRING_DATA_MONGODB_URI=mongodb://mongo:G2fCe3gg4BDfA6GhHHBC4HBaH3Bga2H2@viaduct.proxy.rlwy.net:37928
-
 ENV PORT=8080
 
 EXPOSE ${PORT}
