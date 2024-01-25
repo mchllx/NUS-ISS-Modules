@@ -89,8 +89,8 @@ public class GameService {
         //{game_id, name, year, ranking, average, users_rated, url, thumbnail, timestamp}
         Game game = gameRepo.getGameById(gId);
 
-        System.out.println("Gid" + game.getGid());
-        
+        // System.out.println("Gid" + game.getGid());
+
         JsonObjectBuilder gameBuilder = Json.createObjectBuilder()
             .add("game_id", game.getGid())
             .add("name", game.getName())

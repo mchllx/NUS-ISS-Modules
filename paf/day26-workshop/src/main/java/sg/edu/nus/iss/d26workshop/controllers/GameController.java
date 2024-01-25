@@ -50,11 +50,22 @@ public class GameController {
     }
 
     // task 3
-    //http://localhost:8080/games/174430, http://localhost:8080/games/161936, http://localhost:8080/games/0
+    //http://localhost:8080/games/174430, http://localhost:8080/games/272410, http://localhost:8080/games/0
     @GetMapping(path="/games/{game_id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getGameById(@PathVariable(name="game_id") Integer game_id) {
-        System.out.println("Gidd?" + game_id);
 
+        try {
+            if (game_id == null || game_id <= 0) {
+                throw new GameNotFoundException("Invalid game id");
+            } 
+        } catch (GameNotFoundException e1) {
+            e1.printStackTrace();
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body("Invalid game id");
+        }
+            
         //handle non-existence game ids
         JsonObject results = gameSvc.getDetailsById(game_id);
         

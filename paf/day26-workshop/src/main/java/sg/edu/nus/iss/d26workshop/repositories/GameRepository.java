@@ -85,11 +85,7 @@ public class GameRepository {
         , "games");
         // System.out.println(doc);
 
-        // if (doc == null) {
-        //     throw new GameNotFoundException("Game not found");
-        // }
-
-        game.setGid((d.getInteger("gid"))); 
+        game.setGid((d.getInteger("gid") != null? d.getInteger("gid"):0)); 
         game.setName((d.getString("name"))); 
         game.setYear((d.getInteger("year"))); 
         game.setRanking((d.getInteger("ranking"))); 
@@ -97,7 +93,7 @@ public class GameRepository {
         game.setUrl((d.getString("url") != null? d.getString("url"):"")); 
         game.setImage((d.getString("image") != null? d.getString("url"):"")); 
 
-        System.out.println("Game"+ game);
+        // System.out.println("Game"+ game);
         return game;
 
     }
