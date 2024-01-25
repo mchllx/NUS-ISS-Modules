@@ -78,12 +78,21 @@ public class GameRepository {
     public Game getGameById(Integer gid) {
         Query query = new Query();
         query.addCriteria(Criteria.where("gid").is(gid));
-
+        // System.out.println(query);
+        
         Game game = new Game();
 
         Document d = mongoTemplate.findOne(query, Document.class
         , "games");
         // System.out.println(doc);
+
+        try {
+            if (d == null) {
+                throw new NullPointerException("Game does not exist");
+            }
+        } catch (NullPointerException e2) {
+            logger.info("Game does not exist");
+        }
 
         game.setGid((d.getInteger("gid") != null? d.getInteger("gid"):0)); 
         game.setName((d.getString("name"))); 

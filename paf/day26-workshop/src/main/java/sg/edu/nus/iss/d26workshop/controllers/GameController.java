@@ -67,12 +67,20 @@ public class GameController {
         }
             
         //handle non-existence game ids
-        JsonObject results = gameSvc.getDetailsById(game_id);
-        
-        return ResponseEntity
+        try {
+            JsonObject results = gameSvc.getDetailsById(game_id);
+            return ResponseEntity
             .status(HttpStatus.OK)
             .contentType(MediaType.APPLICATION_JSON)
             .body(results.toString());
+
+        } catch (NullPointerException e2) {
+            e2.printStackTrace();
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body("Game does not exist");
+        }
     }
 }
 
