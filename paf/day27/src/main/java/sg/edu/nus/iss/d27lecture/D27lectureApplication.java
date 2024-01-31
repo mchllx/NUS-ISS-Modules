@@ -19,7 +19,10 @@ public class D27lectureApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		personRepo.readById();
+		// personRepo.insertOne();
+		// personRepo.insertMany();
+		personRepo.deleteOne();
+		// personRepo.deleteMany();
 	}
 
 }
