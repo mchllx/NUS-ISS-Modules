@@ -1,0 +1,5 @@
+sg/edu/nus/iss/d28/models/Game.class
+sg/edu/nus/iss/d28/services/GameService.class
+sg/edu/nus/iss/d28/repository/GameRepo.class
+sg/edu/nus/iss/d28/D28Application.class
+sg/edu/nus/iss/d28/controllers/GameRestController.class

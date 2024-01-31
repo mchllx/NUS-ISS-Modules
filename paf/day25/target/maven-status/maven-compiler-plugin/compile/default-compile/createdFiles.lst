@@ -1,0 +1,4 @@
+sg/edu/nus/iss/d25workshop/services/SalesSubscribe.class
+sg/edu/nus/iss/d25workshop/repository/MessagePoller.class
+sg/edu/nus/iss/d25workshop/configs/AppConfig.class
+sg/edu/nus/iss/d25workshop/D25workshopApplication.class

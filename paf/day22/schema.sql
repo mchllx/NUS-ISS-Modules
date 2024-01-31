@@ -1,5 +1,3 @@
--- Drop database if exists --
-
 drop database if exists contacts;
 
 create database contacts;

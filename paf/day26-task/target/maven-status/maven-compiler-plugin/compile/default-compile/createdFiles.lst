@@ -1,0 +1,5 @@
+sg/edu/nus/iss/d26task/models/Game.class
+sg/edu/nus/iss/d26task/controllers/SearchController.class
+sg/edu/nus/iss/d26task/repositories/GameRepository.class
+sg/edu/nus/iss/d26task/models/Comment.class
+sg/edu/nus/iss/d26task/D26TaskApplication.class

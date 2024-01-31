@@ -26,7 +26,7 @@ public class GameRepository {
         final PageRequest pageable = PageRequest.of(limit, offset);
         Query query = new Query().with(pageable);
 
-        //game = file name
+        //game = file name, returns a list
         return mongoTemplate.find(query, Document.class, 
             "game")
             .stream()
