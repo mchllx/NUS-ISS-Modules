@@ -6,12 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import sg.edu.nus.iss.d27lecture.repositories.PersonRepository;
+import sg.edu.nus.iss.d27lecture.services.PersonService;
 
 @SpringBootApplication
 public class D27lectureApplication implements CommandLineRunner {
 
 	@Autowired
 	private PersonRepository personRepo;
+
+	@Autowired
+	private PersonService personSvc;
 
 	public static void main(String[] args) {
 		SpringApplication.run(D27lectureApplication.class, args);
@@ -20,9 +24,10 @@ public class D27lectureApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// personRepo.insertOne();
-		// personRepo.insertMany();
-		personRepo.deleteOne();
+		personRepo.insertMany("./data/persons.csv");
+		// personRepo.deleteOne();
 		// personRepo.deleteMany();
+		// personSvc.readCSV("./data/persons.csv");
 	}
 
 }

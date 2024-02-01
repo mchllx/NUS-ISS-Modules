@@ -16,5 +16,15 @@ db.persons.insertMany(
 )
 
 day27 slide 4
+//db.persons.deleteOne(
+//    { name:
+//        {$exists: true}}
+//)
+
+//db.persons.deleteMany(
+//    { name: "Germis"},
+//    { name:
+//        {$exists: true}}
+//)
 
 
