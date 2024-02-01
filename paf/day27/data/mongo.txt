@@ -1,0 +1,51 @@
+db.persons.deleteMany(
+    { name: "Germis"},
+    { name:
+        {$exists: true}}
+)
+
+db.persons.find()
+
+db.persons.insertMany(
+    [
+        { name: "Xiao Ming", age: 20, gender: "M", hobbies: [ "food", "electronics"] },
+        { name: "Xiao Hua", age: 32, gender: "M", hobbies: [ "soccer", "running"] },
+        { name: "Xiao Mei", age: 40, gender: "F", hobbies: [ "shopping", "basketball"] },
+        { name: "Xiao Li", age: 18, gender: "F", hobbies: [ "studying", "sleeping"] },
+        { name: "Fred", age: 56, gender: "M", hobbies: [ "eating", "cartoons"] }
+    ]
+)
+
+db.persons.updateOne(
+    { name: "Xiao Hua" },
+    {
+        $set: {gender: "M"},
+        $inc: { "age": 1},
+        $unset: {gender: ""},
+        $set: {status: "single"},
+        $set: {nickname: "Hua hua"},
+        
+    }
+)
+
+db.persons.updateOne(
+    {  name: "Xiao Mei" },
+    {
+        $pop: {hobbies: -1},
+        $push: {hobbies: "skating"},
+    
+    }
+)
+
+db.persons.updateOne(
+    { name: "Xiao Mei" },
+    { $set: {name: "Maybelline", age: 41,
+      gender: "Others", hobbies: ["crocheting", "fortune telling"]
+    }},
+    { upsert:true }
+)
+
+db.persons.createIndex({
+    name: 1
+    
+})
