@@ -24,9 +24,9 @@ public class D27lectureApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// personRepo.insertOne();
-		personRepo.insertMany("./data/persons.csv");
 		// personRepo.deleteOne();
-		// personRepo.deleteMany();
+		personRepo.deleteMany();
+		// personRepo.insertMany("./data/persons.csv");
 		// personSvc.readCSV("./data/persons.csv");
 	}
 

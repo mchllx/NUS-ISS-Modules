@@ -90,7 +90,7 @@ public class PersonRepository {
 
     public void deleteMany() {
         Query query = Query
-            .query(Criteria.where("name").exists(true));
+            .query(Criteria.where("_id").exists(true));
 
         // DeleteResult del = template.remove(query, "persons");
 
