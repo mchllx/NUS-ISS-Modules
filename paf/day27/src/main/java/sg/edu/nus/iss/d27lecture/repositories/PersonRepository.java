@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.core.query.Update.Position;
 import org.springframework.stereotype.Repository;
@@ -172,7 +174,53 @@ public class PersonRepository {
 
     }
 
+//     db.persons.find(
+//     {
+//         $text: {
+//             $search: "xiao mei"
+//         }
+//     }
 
-   
+// )
+    public void search() {
+        TextCriteria txt = TextCriteria
+            .forDefaultLanguage()
+            .matchingPhrase("xiao mei")
+            .caseSensitive(false);
+
+        TextQuery query = TextQuery.queryText(txt);
+
+        List<Document> results = template.find(query, Document.class, "persons");
+        System.out.println("Search" + results);
+
+    }
+
+//     db.persons.find(
+//     {
+//         $text: {
+//             $search: "xiao mei"
+//         }
+//     },
+//     {
+//         score: {
+//             $meta: "textScore"
+//         }
+//     }
+// )
+    public void searchWithScore() {
+        TextCriteria txt = TextCriteria
+            .forDefaultLanguage()
+            .matchingPhrase("xiao mei")
+            .caseSensitive(false);
+        
+        TextQuery query = TextQuery.queryText(txt)
+            .sortByScore()
+            .includeScore("score");
+        
+        List<Document> results = template.find(query, Document.class, "persons");
+        System.out.println("Search with score" + results);
+
+    }
+
     
 }

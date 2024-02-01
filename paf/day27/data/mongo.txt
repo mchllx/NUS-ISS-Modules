@@ -49,3 +49,31 @@ db.persons.createIndex({
     name: 1
     
 })
+
+db.persons.createIndex(
+    {
+        name: "text"
+    }
+)
+
+db.persons.find(
+    {
+        $text: {
+            $search: "xiao mei"
+        }
+    }
+
+)
+
+db.persons.find(
+    {
+        $text: {
+            $search: "xiao mei"
+        }
+    },
+    {
+        score: {
+            $meta: "textScore"
+        }
+    }
+)

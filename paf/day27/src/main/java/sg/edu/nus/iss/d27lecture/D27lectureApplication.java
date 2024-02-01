@@ -30,7 +30,9 @@ public class D27lectureApplication implements CommandLineRunner {
 		// personSvc.readCSV("./data/persons.csv");
 		// personRepo.updateOne();
 		// personRepo.updateHobbyForOne();
-		personRepo.upsertOne();
+		// personRepo.upsertOne();
+		// personRepo.search();
+		personRepo.searchWithScore();
 	}
 
 }
