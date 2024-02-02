@@ -1,9 +1,12 @@
 package sg.edu.nus.iss.d26workshop.repositories;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,12 +15,15 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.DocumentOperators.Rank;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.result.UpdateResult;
 import com.mongodb.internal.connection.QueryResult;
 
 import jakarta.json.JsonObject;
 import sg.edu.nus.iss.d26workshop.exception.GameNotFoundException;
+import sg.edu.nus.iss.d26workshop.models.Comment;
 import sg.edu.nus.iss.d26workshop.models.Game;
 
 @Repository
@@ -88,9 +94,9 @@ public class GameRepository {
 
         try {
             if (d == null) {
-                throw new NullPointerException("Game does not exist");
+                throw new GameNotFoundException("Game does not exist");
             }
-        } catch (NullPointerException e2) {
+        } catch (GameNotFoundException e2) {
             logger.info("Game does not exist");
         }
 
@@ -105,6 +111,118 @@ public class GameRepository {
         // System.out.println("Game"+ game);
         return game;
 
+    }
+
+    //task1, day27
+//     db.reviews.updateOne(
+//     {
+//         gid: 1
+//     },
+//     {
+//         $set: {user: "test", rating: 1, c_text: "bad", posted: new Date(), name: "Tester"}
+//     },
+//     {upsert: true}
+// )
+
+    public void updateCommentById(Integer gid, JsonObject results) {
+
+        Query query = new Query()
+            .addCriteria(Criteria.where("gid")
+            .is(gid)
+            );
+        
+        Update update = new Update()
+            .set("user", results.getString("user"))
+            .set("rating", results.getInt("rating"))
+            .set("c_text", results.getString("comment"))
+            .set("gid", results.getInt("id"))
+            .set("posted", results.getString("posted"))
+            .set("name", results.getString("name"));
+
+        UpdateResult updateResult = mongoTemplate
+            .updateFirst(query, update, Document.class, "comments");
+
+        System.out.printf(">>>Documents updated: %d\n", updateResult.getModifiedCount());
+
+    }
+
+    // public void upsertCommentById(Integer gid, String cid, JsonObject results) {
+    //     if (cid == null) {
+    //         cid = new ObjectId().toString();
+    //     }
+
+    //     Query query = new Query()
+    //         .addCriteria(Criteria.where("gid")
+    //         .is(gid).and(cid)
+    //         );
+        
+    //     Update update = new Update()
+    //         .set("user", results.getString("user"))
+    //         .set("rating", results.getInt("rating"))
+    //         .set("c_text", results.getString("comment"))
+    //         .set("gid", results.getInt("id"))
+    //         .set("posted", results.getString("posted"))
+    //         .set("name", results.getString("name"));
+
+    //     UpdateResult updateResult = mongoTemplate
+    //         .updateFirst(query, update, Document.class, "comments");
+
+    //     System.out.printf(">>>Documents inserted: %s\n", updateResult.getUpsertedId());
+    //     System.out.printf(">>>Documents updated: %d\n", updateResult.getModifiedCount());
+
+    // }
+
+    /** "_id" : ObjectId("65b244e23e700314feb5e679"), "c_id" : "091910bd", "user" : "Gamesrosco",
+    "rating" : NumberInt(7), "c_text" : "An engaging game with cute bug cardboard pieces for 2-5 year olds with 3 levels of play.  Good for practicing identification of numbers, colours and shapes all in one game.", "gid" : NumberInt(132322)**/
+    public List<Comment> getCommentById(Integer gid) {
+        Query query = new Query()
+            .addCriteria(Criteria.where("gid").is(gid));
+
+        List<Comment> comments = new ArrayList<>();
+
+        List<Document> docs = mongoTemplate
+            .find(query, Document.class, "comments");
+
+        for (Document d: docs) {
+            String cid = d.getString("c_id");
+            String user = d.getString("name");
+            int rating = d.getInteger("rating");
+            String text = d.getString("c_text");
+            gid = d.getInteger("gid");
+
+            Comment comment = new Comment();
+                comment.setUser(user);
+                comment.setRating(rating);
+                comment.setText(text);
+                comment.setGid(gid);
+                comment.setCid(cid);
+
+            comments.add(comment);
+        }
+            
+        return comments;
+    }
+
+    public Comment getCommentByCId(String cid) {
+        Query query = new Query()
+            .addCriteria(Criteria.where("cid").is(cid));
+        
+        Document d = mongoTemplate.findOne(query, Document.class, "comments");
+
+        cid = d.getString("c_id");
+        String user = d.getString("name");
+        int rating = d.getInteger("rating");
+        String text = d.getString("c_text");
+        Integer gid = d.getInteger("gid");
+
+        Comment comment = new Comment();
+            comment.setUser(user);
+            comment.setRating(rating);
+            comment.setText(text);
+            comment.setGid(gid);
+            comment.setCid(cid);
+
+        return comment;
     }
     
 }

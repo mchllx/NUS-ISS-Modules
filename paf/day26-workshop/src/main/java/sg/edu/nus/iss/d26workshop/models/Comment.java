@@ -13,12 +13,13 @@ public class Comment {
     private String text;
     private Integer rating;
     private Integer gid;
+    private String cid;
 
     //average
     public Comment() {
     }
 
-    public Comment(String user, String text, Integer rating, Integer gid) {
+    public Comment(String user, String text, Integer rating, Integer gid, String cid) {
         this.user = user;
         this.text = text;
         this.rating = rating;
@@ -35,6 +36,8 @@ public class Comment {
                 .concat("" + this.rating)
                 .concat(", gid=")
                 .concat("" + this.gid)
+                .concat(", cid=")
+                .concat("" + this.cid)
                 .concat("]");
     }
 
@@ -46,6 +49,8 @@ public class Comment {
     public void setRating(Integer rating) { this.rating = rating; }
     public Integer getGid() { return gid; }
     public void setGid(Integer gid) { this.gid = gid; }
+    public String getCid() { return cid; }
+    public void setCid(String cid) { this.cid = cid; }
 
     public JsonObject toJSON() {
         return Json.createObjectBuilder()
@@ -53,15 +58,17 @@ public class Comment {
             .add("text", getText() !=null? getText():"")
             .add("rating", getRating())
             .add("gid", getGid())
+            .add("cid", getCid())
             .build();
     }
 
     public static Comment fromJSON(Document d) {
         Comment comment = new Comment();
-        comment.setUser(d.getString("user"));
-        comment.setText(d.getString("text"));
-        comment.setRating(d.getInteger("rating"));
-        comment.setGid(d.getInteger("gid"));
+            comment.setUser(d.getString("user"));
+            comment.setText(d.getString("text"));
+            comment.setRating(d.getInteger("rating"));
+            comment.setGid(d.getInteger("gid"));
+            comment.setCid(d.getString("cid"));
         return comment;
     } 
 }

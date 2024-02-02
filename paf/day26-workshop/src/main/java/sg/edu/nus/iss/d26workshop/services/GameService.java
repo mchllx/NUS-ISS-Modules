@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.d26workshop.services;
 
+import org.bson.Document;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import sg.edu.nus.iss.d26workshop.exception.GameNotFoundException;
+import sg.edu.nus.iss.d26workshop.models.Comment;
 import sg.edu.nus.iss.d26workshop.models.Game;
 import sg.edu.nus.iss.d26workshop.models.Games;
 import sg.edu.nus.iss.d26workshop.repositories.GameRepository;
@@ -119,6 +121,26 @@ public class GameService {
 
     public List<Game> getGamesByRank(Integer limit, Integer offset) {
         return gameRepo.getByRanking(limit, offset);
+    }
+
+    public void updateCommentById(Integer gid, JsonObject results) {
+        gameRepo.updateCommentById(gid, results);
+    }
+
+    public List<Comment> getCommentById(Integer gid) {
+        return gameRepo.getCommentById(gid);
+    }
+
+    public boolean hasCommentId(String cid) {
+        if (gameRepo.getCommentByCId(cid) == null) {
+            return false;
+        } else {
+            return true;
+        } 
+    }
+
+    public Comment getCommentByCId(String cid) {
+        return gameRepo.getCommentByCId(cid);
     }
     
 }
