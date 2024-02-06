@@ -1,0 +1,9 @@
+<div>
+    <input type="range" [min]="min" [max]="max" [value]="value" (change)="process($event)">
+    <button (click)="up()">+</button>
+    <button (click)="down()">-</button>
+</div>
+
+<!-- <img src="./assets/numbers/number1.jpg" alt=""> -->
+
+<img [src]="url+intNum+ext" alt="">
