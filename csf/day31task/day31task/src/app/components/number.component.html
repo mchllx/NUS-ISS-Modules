@@ -1,5 +1,5 @@
 <div>
-    <input type="range" [min]="min" [max]="max" [value]="value" (change)="process($event)">
+    <input type="range" [min]="min" [max]="max" [value]="value" (input)="process(numSelected)">
     <button (click)="up()">+</button>
     <button (click)="down()">-</button>
 </div>

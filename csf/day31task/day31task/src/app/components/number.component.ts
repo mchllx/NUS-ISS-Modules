@@ -24,12 +24,9 @@ export class NumberComponent {
   @Output()
   numSelected=new Subject<number>()
 
-  // initialValue=new Subject<string>()
-
-  process($event: any) {
-    this.numSelected.next(parseInt($event.target.number))
-    console.info(">>>number.components range: ", parseInt($event.target.number))
-
+  process($event: Subject<number>) {
+    console.info(">>>number.components range: ", this.intNum++)
+    this.numSelected.next(+1)
   }
 
   up() {
