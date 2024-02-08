@@ -1,0 +1,7 @@
+<p> {{ greeting }} </p>
+
+<label>Write something and pass data/string back to parent</label>
+
+<input #itemName>
+<button (click)="sendItem(itemName.value)">Send data back to parent</button>
+
