@@ -42,4 +42,8 @@ export class AppComponent implements OnInit {
     console.info("isOnline tag:" + [this.isOnline])
   }
 
+  onSwipeUp():void {
+    console.info("Swiped up")
+  }
+
 }

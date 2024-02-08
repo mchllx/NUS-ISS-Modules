@@ -16,3 +16,28 @@
     <span class="badge-bg-danger" *ngIf="!isOnline">Offline</span>
   </div>
 </div>
+
+<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+
+<form>
+  <mat-form-field>
+    <input type="email" formControlName="email"
+    placeholder="Please enter your email"
+    matInput>
+  </mat-form-field>
+</form>
+
+<button type="button" mat-button>Press</button>
+<button type="button" mat-raised-button>Press</button>
+<button type="button" color="primary" mat-raised-button>Press</button>
+<button type="button" mat-icon-button><mat-icon>favorite</mat-icon></button>
+<button type="button" color="accent" mat-icon-button><mat-icon>favorite</mat-icon></button>
+<button type="button" color="warn" mat-button><mat-icon>free_breakfast</mat-icon></button>
+
+<mat-radio-group formControlName="attending">
+  <mat-radio-button value="yes"> Yes </mat-radio-button>
+  <mat-radio-button value="no"> No </mat-radio-button>
+</mat-radio-group>
+
+
+<div (panup)="onSwipeUp()"></div>

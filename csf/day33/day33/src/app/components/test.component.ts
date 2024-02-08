@@ -13,6 +13,15 @@ export class TestComponent implements OnInit {
   @Output()
   public eventEmitter: EventEmitter<any> = new EventEmitter();
 
+  cards : any[] = [{
+    title: "First record",
+    body: "This is my first record"
+  },
+  {
+    title: "Second record",
+    body: "This is my second record" 
+  }]
+
   constructor() {
   }
   
