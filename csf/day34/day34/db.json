@@ -1,0 +1,22 @@
+{
+    "employees": [{
+            "id": 12345,
+            "firstName": "Michelle",
+            "lastName": "Lim",
+            "email": "michelle@gmail.com",
+            "dob": "2000-02-14T03:45:00Z",
+            "gender": "F",
+            "salary": 20000
+        },
+        {
+            "id": 12346,
+            "firstName": "McDonald",
+            "lastName": "Ronald",
+            "email": "mcdonald@gmail.com",
+            "dob": "1800-08-08T08:00:00Z",
+            "gender": "M",
+            "salary": 50
+        }
+
+    ]
+}
