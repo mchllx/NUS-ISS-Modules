@@ -7,17 +7,21 @@ import { MaterialModule } from './modules/material/material.module';
 import { FormsModule } from '@angular/forms';
 import { EmployeelistComponent } from './components/employeelist.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeAddEditComponent } from './components/employee-add-edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeelistComponent
+    EmployeelistComponent,
+    EmployeeAddEditComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     // provideClientHydration(),

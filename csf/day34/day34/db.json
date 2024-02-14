@@ -16,6 +16,15 @@
             "dob": "1800-08-08T08:00:00Z",
             "gender": "M",
             "salary": 50
+        },
+        {
+            "id": 12346,
+            "firstName": "McDonald",
+            "lastName": "Ronald",
+            "email": "mcdonald@gmail.com",
+            "dob": "1800-08-08T08:00:00Z",
+            "gender": "M",
+            "salary": 50
         }
 
     ]

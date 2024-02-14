@@ -20,7 +20,7 @@ export class EmployeeService {
 
   //pathvar, "" not treated as param
   deleteEmployee(id: number) : Observable<any> {
-    return this.httpClient.delete(this.jsonServerUrl + '/employees/${id}')
+    return this.httpClient.delete(this.jsonServerUrl + `/employees/${id}`);
   }
 
   getEmployees(): Observable<any> {
@@ -28,7 +28,7 @@ export class EmployeeService {
   }
 
   updateEmployee(id: number, data: any): Observable<any> {
-    return this.httpClient.put(this.jsonServerUrl + '/employees/${id}', data)
+    return this.httpClient.put(this.jsonServerUrl + `/employees/${id}`, data)
   }
 
 
