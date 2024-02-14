@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Content</th>
+            <th>Description</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let n of newsArray">
+            <td>{{n.author}}</td>
+            <td>{{n.content}}</td>
+            <td>{{n.description}}</td>
+            <td>{{n.title}}</td>
+        </tr>
+    </tbody>
+</table>
