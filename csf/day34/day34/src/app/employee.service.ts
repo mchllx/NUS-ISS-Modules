@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
 
   //endpoint
-  jsonServerUrl: string = "http://localhost:3000/"
+  jsonServerUrl: string = 'http://localhost:3000'
 
   constructor(private httpClient: HttpClient) { }
 
