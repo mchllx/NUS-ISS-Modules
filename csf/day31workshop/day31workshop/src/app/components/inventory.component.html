@@ -1,0 +1,27 @@
+<!--TODO: TASK 2-->
+<div *ngIf="inventory.length > 0; else noInventory">
+    <div *ngFor="let i of inventory; let j = index">
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img [src]="i.image" width="200"></td>
+                <td>{{i.description}}</td>
+                <td>
+                    <button type="button" (click)="addCart(j)">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    </div> 
+</div>
+
+<ng-template #noInventory>
+    <h2>Inventory is empty right now</h2>
+</ng-template>

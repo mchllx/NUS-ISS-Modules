@@ -1,0 +1,29 @@
+<!--TODO: TASK 2-->
+<div *ngIf="cart.length > 0; else noCart">
+    <div *ngFor="let c of cart; let j = index">
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img [src]="c.inventory.image" width="200"></td>
+                <td>{{c.inventory.description}}</td>
+                <td>{{c.quantity}}</td>
+                <td>
+                    <button type="button" (click)="removeCart(j)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    </div> 
+</div>
+
+<ng-template #noCart>
+    <h2>Cart is empty</h2>
+</ng-template>
