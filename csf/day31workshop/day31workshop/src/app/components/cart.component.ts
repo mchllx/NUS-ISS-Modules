@@ -1,31 +1,39 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Cart } from '../models';
-import { InventoryComponent } from './inventory.component';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
   @Input()
-  newCart = new Subject<Cart>()
+  newCart: Cart[] = []
 
-  ngOnInit(): void {
+  removeCart(c: Cart): void {
+    console.log(c)
+    if (c.quantity > 1) {
+      console.log("updating item") 
+      c.quantity--
+    } else {
+      console.log("removing item from cart") 
+      this.removeItem(c)
+    } 
   }
 
-  cart: Cart[] = []
-  
-  updateCart(): void {
-    console.log(this.cart.values)
-  }
+  removeItem(c: Cart): boolean {
+    let size = this.newCart.length
 
-  removeCart(j: number): void {
-    console.log(j)
-    console.log(this.cart)
-    console.log("removing item from cart") 
+    for (let i = 0 ; i < size; i++) {
+      if (this.newCart[i].id === c.id) {
+        this.newCart.splice(i, 1)
+        return true
+      }
+    }
+
+    console.log("item not found")
+    return false
   }
 
 }

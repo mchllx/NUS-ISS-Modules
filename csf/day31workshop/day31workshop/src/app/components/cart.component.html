@@ -1,6 +1,6 @@
 <!--TODO: TASK 2-->
-<div *ngIf="cart.length > 0; else noCart">
-    <div *ngFor="let c of cart; let j = index">
+<div *ngIf="newCart.length > 0; else noCart">
+    <div *ngFor="let c of newCart; let j = index">
     <table>
         <thead>
             <tr>
@@ -11,11 +11,11 @@
         </thead>
         <tbody>
             <tr>
-                <td><img [src]="c.inventory.image" width="200"></td>
-                <td>{{c.inventory.description}}</td>
+                <td><img [src]="c.image" width="200"></td>
+                <td>{{c.description}}</td>
                 <td>{{c.quantity}}</td>
                 <td>
-                    <button type="button" (click)="removeCart(j)">Remove</button>
+                    <button type="button" (click)="removeCart(c)">Remove</button>
                 </td>
             </tr>
         </tbody>

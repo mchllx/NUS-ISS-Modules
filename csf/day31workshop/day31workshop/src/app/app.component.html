@@ -7,8 +7,8 @@
   </thead>
   <tbody>
     <tr>
-      <td><app-inventory></app-inventory></td>
-      <td><app-cart></app-cart></td> 
+      <td><app-inventory (newItem)="createItem($event)"></app-inventory></td>
+      <td><app-cart [newCart]="cart"></app-cart></td> 
     </tr> 
   </tbody> 
 </table>
