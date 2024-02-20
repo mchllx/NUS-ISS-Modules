@@ -1,4 +1,4 @@
-ng new day31workshop --standalone=false
+ng new day31workshop --standalone=false //N for SSR
 npm install -g uuid
 
 docker build -t username/container:v1.0.0 .
