@@ -15,7 +15,7 @@ export class TodoComponent implements OnInit {
   // ctrl_comments = "comments"
   todoForm!: FormGroup
 
-  taskArray!:FormArray
+  taskArray!: FormArray
 
   @Output()
   newTodo = new Subject<Todo>()

@@ -1,0 +1,4 @@
+com/example/day35/controllers/GameController.class
+com/example/day35/repository/GamesRepository.class
+com/example/day35/model/Game.class
+com/example/day35/Day35Application.class

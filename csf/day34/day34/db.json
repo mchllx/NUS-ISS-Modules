@@ -26,6 +26,22 @@
             "gender": "M",
             "salary": 50
         }
-
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "title": "test post 1",
+            "body": "this is test post 1"
+        },
+        {
+            "id": 2,
+            "title": "test post 2",
+            "body": "this is test post 2"
+        },
+        {
+            "id": 3,
+            "title": "test post 3",
+            "body": "this is test post 3"
+        }
     ]
 }

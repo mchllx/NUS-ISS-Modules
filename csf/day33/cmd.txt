@@ -1,0 +1,15 @@
+ng serve //localhost
+ng add @angular/pwa //add app manifest
+
+npm i -g  http-server //g = global
+sudo npm i -g http-server
+
+http-server -p 8080 -c-1 dist/day33 //-c-1 disable cache
+
+ng add @angular/material
+
+ng add hammerjs
+
+ng g m material/material
+
+npm install --save @angular/material-luxon-adapter

@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule, HammerModule, provideClientHydration } from '@angular/platform-browser';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
@@ -9,12 +9,14 @@ import { TestComponent } from './components/test.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialmoduleModule } from './module/materialmodule.module';
+import { FriendComponent } from './components/friend.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewchildComponent,
-    TestComponent
+    TestComponent,
+    FriendComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { MaterialmoduleModule } from './module/materialmodule.module';
     provideAnimationsAsync('noop'),
     provideAnimationsAsync()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

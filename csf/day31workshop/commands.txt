@@ -1,0 +1,4 @@
+ng new day31workshop --standalone=false
+npm install -g uuid
+
+docker build -t abc .

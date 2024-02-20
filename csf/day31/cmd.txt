@@ -1,0 +1,45 @@
+npm install –g typescript
+npm install –g @angular/cli
+npm install --save
+
+npm ls -g typescript
+
+ng serve //within angular.json, mvn clean spring-boot:run
+
+ng new <app name> --standalone=false
+ng generate component <name>
+ng build //mvn clean package
+
+npm config set legacy-peer-deps true
+sudo chown -R 501:20 ...
+
+ng g c components/cart --skip-tests=true --flat //disable gen spec.ts
+
+Property Binding
+<input [cart]="cart">
+
+<button type="button" [disabled]="isDisabled"></button>
+<p [style.font-size]="fontSize"> {{ greetings }} </p>
+
+Event Binding
+<input type="range" min="1" max="10" step="0.1"(change)="fontSizeChanged($event)">
+
+If statement
+<div *ngIf="history.length <= 0">
+    <h2>nothing yet</h2>
+</div>
+
+<div *ngIf="history.length > 0">
+    <ul>
+        <li *ngFor="let h of history">
+            {{h}}
+        </li>
+    </ul>
+</div>
+
+Loop statement
+<app-picture *ngFor="let i of images"
+    [image]="i.url"
+    [caption]="i.caption"
+    (imageEvent)="imagePressed($event)">
+</app-picture>

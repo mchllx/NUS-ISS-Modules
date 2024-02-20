@@ -1,0 +1,27 @@
+<h1>hello, world</h1>
+
+<h2>Form status: {{formStatus}}</h2>
+
+<!-- async pipe = next (needed to turn observable into a value) 
+piping observable directly into the view (example)
+no values, hidden, values = appear -->
+<div *ngIf="formStatus$ | async as v">
+  <h2> Form status as observable: {{ v }} </h2>
+</div>
+
+<form [formGroup]="form">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td>
+        <input type="text" size="30" formControlName="name">
+      </td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td>
+        <input type="text" size="30" formControlName="email">
+      </td>
+    </tr>
+  </table>
+</form>

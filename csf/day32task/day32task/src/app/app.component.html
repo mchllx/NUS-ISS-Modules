@@ -1,0 +1,24 @@
+<app-contacts (newContact)="newContact($event)"></app-contacts>
+
+
+<table border="1" *ngIf="contacts.length > 0; else noContacts">
+  <thead>
+    <th>Name</th>
+    <th>Friend</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of contacts"> 
+      <!-- <td><button (click)="loadFriend=($event)">{{ c.name | titlecase }}</button></td> -->
+      <td><button (click)="loadFriend(c)">{{ c.name | titlecase }}</button></td>
+      <td><h4>{{ c.friend }}</h4></td>
+    </tr>
+    
+    <!-- <tr>
+      <h4>{{ c | json }}</h4>
+    </tr>  -->
+  </tbody>
+</table>
+
+<ng-template #noContacts>
+  <h2>No friends lol</h2>
+</ng-template>

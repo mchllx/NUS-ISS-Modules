@@ -1,0 +1,29 @@
+<h1>BGG search </h1>
+
+
+<form [formGroup]="form" (submit)="processForm()">
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td>
+        <input type="text" size="30" formControlName="search">
+      </td>
+    </tr>
+    <button type="submit">Search</button>
+  </table>
+</form>
+
+<div *ngIf="comment$ | async as comments; else noSearch"> </div>
+  <div *ngFor="let c of data">
+    <table>
+      <tr>
+        <td> User: </td>
+        <!-- c? = optional -->
+        <td> {{c?.user }}</td>
+      </tr>
+    </table>
+  </div>
+
+<ng-template #noSearch>
+  <h2>No results</h2>
+</ng-template>

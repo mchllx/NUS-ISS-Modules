@@ -1,0 +1,14 @@
+npm i -g json-server
+sudo npm i -g json-server
+
+json-server --watch 'db.json'
+
+ng g m modules/material
+
+ng g s employee --skip-tests=true //creates service
+ng g c components/employeelist --flat --skip-tests=true
+
+sudo npm install -g bootstrap
+
+
+ng serve -o

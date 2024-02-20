@@ -1,0 +1,8 @@
+ng new day31workshop --standalone=false //N for SSR
+
+docker build -t username/container:v1.0.0 .
+docker container run -d -p 8080:8080 username/container:v1.0.0 .
+
+npm i dexie //indexeddb, install where package.json is
+sudo npm i -g dexie
+npm install -g uuid

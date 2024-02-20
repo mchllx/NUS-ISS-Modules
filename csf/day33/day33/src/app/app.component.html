@@ -1,12 +1,12 @@
 <h2>View Child</h2>
-
+<!-- 
 <app-viewchild></app-viewchild>
-<button (click)="changeViewchildText()">Change child text</button>
+<button (click)="changeViewchildText()">Change child text</button> -->
 
 <!-- <app-test [parentData]="greeting" (eventEmitter)="addItem($event)></app-test>
 
 <div> Items from test components: {{Item}} </div> -->
-
+<!-- 
 <div class="row my-5">
   <div class="col text-end">
     Status:
@@ -39,5 +39,23 @@
   <mat-radio-button value="no"> No </mat-radio-button>
 </mat-radio-group>
 
+<mat-form-field>
+  <mat-select placeholder="Guest" formControlName="guest">
+    <mat-option *ngFor="let g of [0, 1 , 2 ,3]" [value]="g">
+      {{ g }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-checkbox formControlName="newsletter">
+  Yes, I wish to receive newsletters
+</mat-checkbox> -->
+
+<!-- <mat-checkbox [formControl]="diet"
+  *ngFor="let diet of dietArray.controls; let i = index">
+{{ labels[i]}}
+</mat-checkbox> -->
+
+<app-friend></app-friend>
 
 <div (panup)="onSwipeUp()"></div>

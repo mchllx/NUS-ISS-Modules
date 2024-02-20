@@ -1,0 +1,9 @@
+<div class="container">
+    <form>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Enter your full name" formControlName="name" #fullName>
+            <mat-error *ngIf="form.get('name')?.hasError('required')">Full name is mandatory</mat-error>
+        </mat-form-field>
+
+    </form>
+</div>

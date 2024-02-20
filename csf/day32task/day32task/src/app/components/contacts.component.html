@@ -1,0 +1,45 @@
+<h2>Contact List</h2>
+
+<ul>
+    <li>pristine {{contactForm.pristine}}</li>
+    <li>dirty {{contactForm.dirty}}</li>
+    <li>invalid {{contactForm.invalid}}</li>
+</ul>
+
+<form [formGroup]="contactForm" (submit)="processForm()" (reset)="loadFriend()">
+    <h4>{{ loadedFriend }}</h4>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" size="30" formControlName="name">
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="email" size="30" formControlName="email">
+            </td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>
+                <input type="text" size="30" formControlName="phone">
+            </td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td>
+                <input type="date" size="30" formControlName="dob">
+            </td>
+        </tr>
+        <tr>
+            <td>Friend</td>
+            <td>
+                <input type="checkbox" formControlName="friend">
+            </td>
+        </tr>
+        <button type="submit" [disabled]="contactForm.invalid">Add</button>
+        <button type="button">Update</button>
+    </table>
+</form>

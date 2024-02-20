@@ -17,7 +17,7 @@ export class NumberComponent {
   max: string="30"
   value: string="5"
 
-  @Input()
+  @Input({alias: 'myvalue'})
   url: string="./assets/numbers/number"
   ext: string=".jpg"
 
@@ -25,6 +25,10 @@ export class NumberComponent {
   numSelected=new Subject<number>()
 
   process($event: Subject<number>) {
+    this.numSelected.subscribe(number => {
+      console.info(">>>value:", number)
+
+    })
     console.info(">>>number.components range: ", this.intNum++)
     this.numSelected.next(+1)
   }
