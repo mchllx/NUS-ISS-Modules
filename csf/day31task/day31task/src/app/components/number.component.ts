@@ -12,8 +12,12 @@ export class NumberComponent {
   // @Input({alias: 'num'})
   @Input()
   value: number=0
+
+  @Input()
   min: number=0
-  max: number=30
+
+  @Input()
+  max: number=16
   neg: number=1
   status!: string
 

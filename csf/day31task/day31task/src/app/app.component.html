@@ -1,4 +1,12 @@
-<h1>Number generator</h1>
+<h1>Number Generator</h1>
 
-<app-number></app-number>
+<tr>
+    <app-number *ngFor="let n of numList"
+    (selected)="process($event, n)"></app-number>
+    
+    <td><img src="/assets/numbers/number{{ newValue }}.jpg" width="200"></td>
+</tr>
+<!-- 
+
+<td><h2>=</h2></td> -->
 
