@@ -1,9 +1,16 @@
 <div>
-    <input type="range" [min]="min" [max]="max" [value]="value" (input)="process(numSelected)">
-    <button (click)="up()">+</button>
-    <button (click)="down()">-</button>
+    <table>
+        <tr>
+            <td><img src="/assets/numbers/number{{ value }}.jpg" width="200"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="number" [min]="min" [max]="max" [value]="value">
+                <button (click)="incr(+1)">+</button>
+                <button (click)="incr(-1)">-</button>
+                <input type="checkbox" (click)="negative()">
+                <button (click)="pressed()">pressed</button>
+            </td>
+        </tr>
+    </table>
 </div>
-
-<!-- <img src="./assets/numbers/number1.jpg" alt=""> -->
-
-<img [src]="url+intNum+ext" alt="">

@@ -1,5 +1,5 @@
-import { Component, Input, Output, numberAttribute } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, first } from 'rxjs';
+import { Component, Input, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-number',
@@ -9,38 +9,48 @@ import { BehaviorSubject, Observable, Subject, first } from 'rxjs';
 export class NumberComponent {
 
   // {transform: numberAttribute}
+  // @Input({alias: 'num'})
   @Input()
-  number: string="0"
-  intNum: number=parseInt(this.number) 
-
-  min: string="0"
-  max: string="30"
-  value: string="5"
-
-  @Input({alias: 'myvalue'})
-  url: string="./assets/numbers/number"
-  ext: string=".jpg"
+  value: number=0
+  min: number=0
+  max: number=30
+  neg: number=1
+  status!: string
 
   @Output()
-  numSelected=new Subject<number>()
+  selected=new Subject<number>()
 
-  process($event: Subject<number>) {
-    this.numSelected.subscribe(number => {
-      console.info(">>>value:", number)
+  incr(num: number) {
+    // check when exceed min/max
 
-    })
-    console.info(">>>number.components range: ", this.intNum++)
-    this.numSelected.next(+1)
+    this.value += num
+
+    if (this.value <= this.min) {
+      this.value = this.max
+    } else if (this.value > this.max) {
+      this.value = this.min 
+    }
+    
+    console.info(">>>", this.value)
+    this.selected.next(this.value)
   }
 
-  up() {
-    console.info(">>>number.components up by one:", this.intNum--)
-    this.numSelected.next(-1)
+  negative() {
+    this.neg *= -1
+
+    if (this.neg < 0) {
+      this.status = "negative"
+    } else {
+    this.status = "positive"
+    }
+    console.info(">>>", this.status)
+   
   }
 
-  down() {
-    console.info(">>>number.components down by one:", this.intNum++)
-    this.numSelected.next(+1)
+  pressed() {
+    console.info(">>>", this.value*this.neg)
+    this.selected.next(this.value * this.neg)
+
   }
 
 }
