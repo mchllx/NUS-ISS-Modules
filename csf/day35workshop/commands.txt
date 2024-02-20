@@ -1,8 +1,9 @@
 ng new day31workshop --standalone=false
 npm install -g uuid
 
-docker build -t abc .
+docker build -t username/container:v1.0.0 .
+docker container run -d -p 8080:8080 username/container:v1.0.0 .
 
 const value = checkbox.target.checked
 
-npm i dexie //indexeddb, install where angular is
+npm i dexie //indexeddb, install where package.json is
