@@ -1,0 +1,31 @@
+<!-- TODO: View 4 -->
+
+<h2>Comment Form</h2>
+<h4>You're commenting</h4>
+
+<form [formGroup]="form" (submit)="postComment()">
+    <table>
+        <tr>
+        <td>
+            <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input type="text" matInput placeholder="Username" formControlName='name'>
+                <mat-error *ngIf="form.get('name')?.hasError('required')">Username cannot be empty</mat-error>
+                <mat-error *ngIf="form.get('name')?.hasError('minlength')">Username must be greater than 3 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Leave a comment below</mat-label>
+            <textarea matInput formControlName='text'></textarea>
+                <mat-error *ngIf="form.get('text')?.hasError('required')">Textarea cannot be empty</mat-error>
+                <mat-error *ngIf="form.get('text')?.hasError('minlength')">Text length must be greater than 1 character</mat-error>
+                <mat-error *ngIf="form.get('text')?.hasError('maxlength')">Text length must be lesser than 120 characters</mat-error>
+            </mat-form-field>            
+        </td>
+        </tr>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid || !form.dirty">Post</button>
+        <button mat-flat-button color="secondary" type="button" (click)="back()">Back</button>
+    </table>
+</form>
+
+    

@@ -1,0 +1,27 @@
+<!-- TODO: View 1 -->
+<!-- Check if form control is dirty before displaying validation error-->
+<h2>Pokemon search</h2>
+
+<h4>Enter a pokemon name</h4>
+
+<ul>
+    <li>invalid {{form.invalid}}</li>
+    <li>dirty {{form.dirty}}</li>
+    <li>pristine {{form.pristine}}</li>
+</ul>
+
+<div class="search-form">
+    <form [formGroup]="form" (submit)="search()">
+        <table>
+            <tr>
+            <td>
+                <mat-form-field>
+                <input type="text" matInput placeholder="Enter a pokemon's name" formControlName='name'>
+                <mat-error *ngIf="form.get('name')?.hasError('required') && (form.get('name')?.invalid)">Name cannot be empty</mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+            <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid && !form.dirty">Search</button>
+        </table>
+    </form>
+</div>

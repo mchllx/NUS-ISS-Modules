@@ -1,0 +1,60 @@
+<!-- TODO: View 3 -->
+<h2>Pokemon Details</h2>
+<h4>You're viewing: {{p.name}}</h4>
+<button mat-flat-button color="secondary" type="button" (click)="back()">Back</button>
+
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <img [src]="p.image" width="40%">
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <button mat-raised-button (click)="onClick(p.id)" color="primary">Comment</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <h2>{{p.name}}, {{p.id}}</h2>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                {{p.abilities}}
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                {{p.url}}
+            </mat-list-item>
+        </mat-list>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <div *ngIf="comments$ | async as data; else noComments" class="mat-elevation-z8">
+            <div *ngFor="let c of data">
+                <mat-list>
+                    <mat-list-item>
+                        <p>{{c.name}} posted: {{c.text}} {{c.timestamp | date }}</p>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+            </div>
+        </div>
+    </mat-grid-tile>
+
+    <ng-template #noComments>
+        <h2>No comments found</h2>
+    </ng-template>
+</mat-grid-list>
+<!-- 
+<mat-grid-tile>
+    <div *ngIf="c;  else noComments" class="mat-elevation-z8">
+        <div *ngFor="let c of c">
+            <mat-list>
+                <mat-list-item>
+                    <h4>{{c.name}} says</h4>
+                    <p>{{c.text}}</p>
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+            </mat-list>
+        </div>
+    </div>
+</mat-grid-tile> -->
