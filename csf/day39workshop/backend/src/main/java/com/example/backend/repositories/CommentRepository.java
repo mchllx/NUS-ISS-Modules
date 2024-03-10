@@ -32,16 +32,17 @@ public class CommentRepository {
     // @Value("${apikey}")
     // private String apiKey;
 
+    @Value("${collection.comments}")
+    private String COL_COMMENTS;
+
     @Autowired
     MongoTemplate template;
-
-    final String COLLECTION = "comments";
 
     public void postComment(Comment comment) {
         Document d = Document.parse(comment.toJSON().toString());
 
         System.out.println(">>>Inserting record");
-        template.insert(d, COLLECTION);
+        template.insert(d, COL_COMMENTS);
     }
 
     // db.getCollection("comments").find()
@@ -133,7 +134,7 @@ public class CommentRepository {
         Aggregation pipeline = Aggregation.newAggregation(
             projectOps, matchOps, addFieldOps, sortOps, skipOps, limitOps);
 
-        AggregationResults<Document> aggregation = template.aggregate(pipeline, COLLECTION, Document.class);
+        AggregationResults<Document> aggregation = template.aggregate(pipeline, COL_COMMENTS, Document.class);
         List<Document> comments = aggregation.getMappedResults();
 
         List<Comment> results = new ArrayList<>(); 
