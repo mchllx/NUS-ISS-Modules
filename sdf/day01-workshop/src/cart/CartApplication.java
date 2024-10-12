@@ -32,7 +32,7 @@ public class CartApplication {
 		String command = scan.next();
 		String item = scan.nextLine();	
 
-		System.out.printf(">>>%s\n", command);
+		// System.out.printf(">>>%s\n", command);
 		switch (command.trim().toLowerCase()) {
 			case "list":
 				if (cart.isEmpty()) {
@@ -76,6 +76,10 @@ public class CartApplication {
 					System.out.printf(">>>%s :: Invalid, please enter a number, stack:%s\n", command, Arrays.asList(e.getStackTrace()).toString());
 					break;
 				}
+
+				if (index > cart.size() || index < cart.size()) {
+					System.out.printf(">>>%s :: %d not found in cart", command, index);	
+				} 
 
 				if (!cart.contains(cart.get(index))) {
 					System.out.printf(">>>%s :: %s does not exist in cart", command, item);
